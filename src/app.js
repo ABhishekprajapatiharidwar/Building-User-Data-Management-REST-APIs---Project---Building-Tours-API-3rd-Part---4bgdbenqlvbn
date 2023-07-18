@@ -26,6 +26,23 @@ The response should be in the following format:
 app.get("/api/v1/users/", (req, res) => {
     try {
         //Write your code here.
+        fs.readFile("./data/users.json",(error,data)=>{
+            if(error){
+
+            }
+            const users=JSON.parse(data.toString());
+            const response={
+                status: "success",
+              
+                data: {
+                  users: users,
+                }
+              
+              }
+              res.json(response);
+                
+            
+        })
     } catch (err) {
         res.status(404).json({
             message: "Users Not Found",
